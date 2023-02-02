@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  
   getInstanceData() async {
     sharedPreferences = await SharedPreferences.getInstance();
     getData();
