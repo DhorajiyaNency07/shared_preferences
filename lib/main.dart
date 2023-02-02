@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'shared_preferences_home_screen.dart';
 
 void main() {

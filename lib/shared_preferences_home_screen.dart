@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_one/local_data.dart';
@@ -15,8 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   LocalData localData = LocalData();
   List<MobileDataModel> listOfData = [];
   SharedPreferences? sharedPreferences;
-  String? place = " ";
-  String? name = " ";
+  String place = "ggv ";
+
   dynamic data = "feb";
 
   Object? todoModel;
@@ -24,8 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    // getInstanceData();
+    getInstanceData();
     super.initState();
+  }
+
+  getInstanceData() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    getData();
   }
 
   setData() async {
@@ -35,10 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
   getData() {
     if (sharedPreferences!.containsKey("string_one")) {
       debugPrint("------>true");
-      place = sharedPreferences!.getString("string_one");
+      place = sharedPreferences!.getString("string_one")!;
     } else {
       debugPrint("------>false");
-      place = " ";
+      place = " jj";
     }
     setState(() {});
   }
@@ -60,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               children: [
                 Text("place: $place", style: const TextStyle(fontSize: 24)),
-                Text("place: $data", style: const TextStyle(fontSize: 24)),
+                Text("data: $data", style: const TextStyle(fontSize: 24)),
               ],
             ),
           ],
@@ -72,6 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
           FloatingActionButton(
             heroTag: "one",
             onPressed: () {
+              debugPrint("place------>$place");
+
               getData();
             },
             child: const Icon(Icons.arrow_downward),
@@ -79,6 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
           FloatingActionButton(
             heroTag: "two",
             onPressed: () {
+              debugPrint("place------------>$place");
+
               setData();
             },
             child: const Icon(Icons.arrow_upward),
@@ -95,15 +103,18 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () async {
               // Set Model -------------------------------->>>>> Set Model
               localData.setString(key: "first", val: "oppo");
+              debugPrint(
+                  "firstData ------------->>>> ${await localData.setString(key: "first", val: "oppo")}");
+
               setState(() {});
             },
-            child: const Icon(Icons.arrow_circle_up_rounded),
+            child: const Icon(Icons.arrow_circle_up_rounded, size: 55),
           ),
           FloatingActionButton(
             heroTag: "five",
             onPressed: () async {
               // Get Model -------------------------------->>>>> Get Model
-              localData.getString(key: "first");
+              // localData.getString(key: "first");
               /// Print model -------------------------------->>>>> print Model
               debugPrint(
                   "firstData ------------->>>> ${await localData.getString(key: "first")}");
@@ -113,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               debugPrint("Data ----------->>>> $data");
               setState(() {});
             },
-            child: const Icon(Icons.arrow_circle_down_rounded),
+            child: const Icon(Icons.arrow_circle_down_rounded, size: 55),
           ),
         ],
       ),

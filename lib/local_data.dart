@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalData {
   SharedPreferences? prefs;
 
-  String todoData = "name";
+  String nameData = "name";
 
   setObject({required String key, required dynamic val}) async {
     prefs = await SharedPreferences.getInstance();
