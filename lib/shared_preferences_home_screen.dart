@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  
+
   getInstanceData() async {
     sharedPreferences = await SharedPreferences.getInstance();
     getData();
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
               debugPrint(
                   "firstData ------------->>>> ${await localData.getString(key: "first")}");
 
-              /// Print model with the help of variable -------------------------------->>>>> Print Model through variable
+              /// Print model with the help of variable ---------------------->>>>> Print Model through variable
               data = await localData.getString(key: "first");
               debugPrint("Data ----------->>>> $data");
               setState(() {});
