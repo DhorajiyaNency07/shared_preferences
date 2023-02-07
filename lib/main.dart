@@ -1,3 +1,8 @@
+/// model pass and
+/// sharedPreferences through function
+/// make common local data file and use it every where in file
+
+
 import 'package:flutter/material.dart';
 import 'shared_preferences_home_screen.dart';
 

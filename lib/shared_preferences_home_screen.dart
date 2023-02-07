@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   LocalData localData = LocalData();
-  List<MobileDataModel> listOfData = [];
+  List<MobileDataModel>? listOfData = [];
   SharedPreferences? sharedPreferences;
   String? place = "ggv ";
 
