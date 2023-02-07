@@ -1,5 +1,5 @@
 /// model pass and
-/// sharedPreferences through function
+/// function through sharedPreferences
 /// make common local data file and use it every where in file
 
 
