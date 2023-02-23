@@ -14,9 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   LocalData localData = LocalData();
   SharedPreferences? sharedPreferences;
-  String? place = "ggv ";
-
-  dynamic data_one = "feb";
+  // String? place = "ggv ";
 
   ToDoModel? toDoModel = ToDoModel();
 
@@ -42,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
   getData() {
     if (sharedPreferences!.containsKey("string_one")) {
       debugPrint("------>true");
-      place = sharedPreferences!.getString("string_one")!;
+      // place = sharedPreferences!.getString("string_one")!;
     } else {
       debugPrint("------>false");
-      place = " jj";
+      // place = " jj";
     }
     setState(() {});
   }
@@ -53,10 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
   // Set Model ----------------------->>>>> Set Model
   setModelData() async {
     ToDoModel toDoModel = ToDoModel(
-      title: "title",
-      date: "date",
-      time: "time",
-      description: "description",
+      title: "title____",
+      date: "date____",
+      time: "time_____",
+      description: "description____",
     );
     await sharedPreferences!.setString("first_key", jsonEncode(toDoModel));
   }
@@ -89,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Column(
               children: [
-                Text("place: $place", style: const TextStyle(fontSize: 24)),
+                // Text("place: $place", style: const TextStyle(fontSize: 24)),
                 Text(
                   "title: ${toDoModel!.title}",
                   style: const TextStyle(fontSize: 24),
@@ -106,19 +104,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   "description: ${toDoModel!.description}",
                   style: const TextStyle(fontSize: 24),
                 ),
-                FloatingActionButton(
-                  heroTag: "four",
-                  onPressed: () {
-                    getModelData();
-                  },
-                  child: const Icon(Icons.arrow_circle_down_rounded, size: 55),
-                ),
+
                 FloatingActionButton(
                   heroTag: "five",
-                  onPressed: () {
+                  onPressed: () async {
+                    debugPrint(
+                        "setmodeldata ------------>>>> ${await localData.getString(key: "first_key")}");
                     setModelData();
                   },
                   child: const Icon(Icons.arrow_circle_up_rounded, size: 55),
+                ),
+                FloatingActionButton(
+                  heroTag: "four",
+                  onPressed: () async {
+                    getModelData();
+                    debugPrint(
+                        "getmodeldata ------------>>>> ${await localData.getString(key: "first_key")}");
+                  },
+                  child: const Icon(Icons.arrow_circle_down_rounded, size: 55),
                 ),
               ],
             ),
@@ -161,23 +164,23 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Text("set"),
           ),
-          FloatingActionButton(
-            heroTag: "five",
-            onPressed: () async {
-              // Get Model -------------------------------->>>>> Get Model
-              localData.getString(key: "first_key");
-
-              /// Print model -------------------------------->>>>> print Model
-              debugPrint(
-                  "firstData ------>------->>>> ${await localData.getString(key: "first_key")}");
-
-              /// Print model with the help of variable ---------->>>>> Print Model through variable
-              data_one = await localData.getString(key: "first_key");
-              debugPrint("Data ----------->>>> $data_one");
-              setState(() {});
-            },
-            child: Text("get"),
-          ),
+          // FloatingActionButton(
+          //   heroTag: "five",
+          //   onPressed: () async {
+          //     // Get Model -------------------------------->>>>> Get Model
+          //     localData.getString(key: "first_key");
+          //
+          //     /// Print model -------------------------------->>>>> print Model
+          //     debugPrint(
+          //         "firstData ------>------->>>> ${await localData.getString(key: "first_key")}");
+          //
+          //     /// Print model with the help of variable ---------->>>>> Print Model through variable
+          //     data_one = await localData.getString(key: "first_key");
+          //     debugPrint("Data ----------->>>> $data_one");
+          //     setState(() {});
+          //   },
+          //   child: Text("get"),
+          // ),
         ],
       ),
     );
